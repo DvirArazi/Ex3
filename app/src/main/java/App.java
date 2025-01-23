@@ -148,7 +148,6 @@ public class App {
 
   // Question 5
   public static <T> int Q7(MyListInterface<T> l) {
-    // MyList<T> types = new MyList<T>();
     ArrayList<String> types = new ArrayList<>();
 
     for (int i = 0; i < types.size(); i++) {
@@ -162,12 +161,12 @@ public class App {
 
   // Question 6
   public static boolean Q10(int n) {
+    System.out.println("n = " + n);
     int sqrt = (int) Math.floor(Math.sqrt(n));
 
     int count = 0;
     for (int i = 2; i <= sqrt; i++) {
-      if (n % i == 0) {
-        System.out.println(i);
+      if (isPrime(i) && n % i == 0) {
         n /= i;
 
         count++;
@@ -180,7 +179,7 @@ public class App {
   static boolean isPrime(int n) {
     int sqrt = (int) Math.floor(Math.sqrt(n));
     for (int i = 2; i <= sqrt; i++) {
-      if (sqrt % i == 0)
+      if (n % i == 0)
         return false;
     }
 
@@ -217,8 +216,11 @@ public class App {
     return sub;
   }
 
-  // Question 8.2
-  // TODO Need to figure out how I'm expected to test the function
+  // Question 8
+  // 8.1 - עצים בינארים שווים מבנית אם שניהם ריקים או שענפי שמאל של שני העצים
+  // שווים מבנית ושענפי ימין של שני העצים שווים מבנית.
+
+  // 8.2
   public static <T> boolean isOfTheSameStructure(BinaryTree<T> bt1, BinaryTree<T> bt2) {
     if (bt1 == null && bt2 == null)
       return true;
@@ -227,6 +229,8 @@ public class App {
     return isOfTheSameStructure(bt1.getLeft(), bt2.getLeft()) &&
         isOfTheSameStructure(bt1.getRight(), bt2.getRight());
   }
+
+  // 8.3 - AppTest.java isOfTheSameStructureTest
 
   // Question 9
   public static <T> int q9(BinaryTree<T> bt1, int min, int max) {
@@ -260,19 +264,22 @@ public class App {
   }
 
   // Question 10
-  // TODO
-  // Unclear how I'm supposed to get the data of each leaf.
-  // Is the `getRoot` function supposed to return the value of
-  // the current node or of that of the base Node of the tree?
-  public static <T> ArrayList<T> q10(BinaryTree<T> bt1) {
-    
-    for (int i = 0; i < bt1.size(); i++) {
-      bt1.get(i);
-    }
+  public static <T> ArrayList<T> q10(Utils.BinaryTree<T> bt1) {
+    ArrayList<T> leaves = new ArrayList<>();
+    collectLeaves(bt1, leaves);
+    return leaves;
   }
 
-  static <T> void gatherLeaves(BinaryTree<T> tree, ArrayList<T> leaves) {
-    if (tree.getLeft() == null && tree.getRight() == null) leaves.add(null)
+  private static <T> void collectLeaves(Utils.BinaryTree<T> node, ArrayList<T> leaves) {
+    if (node == null || node.isEmpty()) {
+      return;
+    }
+    if (node.getLeft() == null && node.getRight() == null) {
+      leaves.add(node.getRoot());
+    } else {
+      collectLeaves(node.getLeft(), leaves);
+      collectLeaves(node.getRight(), leaves);
+    }
   }
 
   // Question 11

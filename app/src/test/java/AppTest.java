@@ -1,9 +1,13 @@
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
+
+import Utils.BinaryTree;
 
 public class AppTest {
   @Test
@@ -62,4 +66,55 @@ public class AppTest {
             "54123#", "54132#", "54213#", "54231#", "54312#", "54321#",
         });
   }
+
+  @Test
+  public void isOfTheSameStructureTest() {
+    assertTrue(App.isOfTheSameStructure(null, null));
+
+    BinaryTree<Integer> tree0 = new BinaryTreeClass<>(null, null, 1);
+    assertFalse(App.isOfTheSameStructure(tree0, null));
+    assertFalse(App.isOfTheSameStructure(null, tree0));
+
+    BinaryTree<Integer> leftA1 = new BinaryTreeClass<>(null, null, 2);
+    BinaryTree<Integer> rightA1 = new BinaryTreeClass<>(null, null, 3);
+    BinaryTree<Integer> treeA1 = new BinaryTreeClass<>(leftA1, rightA1, 1);
+    BinaryTree<Integer> leftA2 = new BinaryTreeClass<>(null, null, 5);
+    BinaryTree<Integer> rightA2 = new BinaryTreeClass<>(null, null, 6);
+    BinaryTree<Integer> treeA2 = new BinaryTreeClass<>(leftA2, rightA2, 4);
+    assertTrue(App.isOfTheSameStructure(treeA1, treeA2));
+
+    BinaryTree<Integer> leftB1 = new BinaryTreeClass<>(null, null, 2);
+    BinaryTree<Integer> treeB1 = new BinaryTreeClass<>(leftB1, null, 1);
+    BinaryTree<Integer> leftB2 = new BinaryTreeClass<>(null, null, 5);
+    BinaryTree<Integer> rightB2 = new BinaryTreeClass<>(null, null, 6);
+    BinaryTree<Integer> treeB2 = new BinaryTreeClass<>(leftB2, rightB2, 4);
+    assertFalse(App.isOfTheSameStructure(treeB1, treeB2));
+
+    BinaryTree<Integer> leftC1 = new BinaryTreeClass<>(new BinaryTreeClass<>(null, null, 2), null, 3);
+    BinaryTree<Integer> rightC1 = new BinaryTreeClass<>(null, new BinaryTreeClass<>(null, null, 4), 5);
+    BinaryTree<Integer> treeC1 = new BinaryTreeClass<>(leftC1, rightC1, 1);
+    BinaryTree<Integer> leftC2 = new BinaryTreeClass<>(new BinaryTreeClass<>(null, null, 6), null, 7);
+    BinaryTree<Integer> rightC2 = new BinaryTreeClass<>(null, new BinaryTreeClass<>(null, null, 8), 9);
+    BinaryTree<Integer> treeC2 = new BinaryTreeClass<>(leftC2, rightC2, 10);
+    assertTrue(App.isOfTheSameStructure(treeC1, treeC2));
+
+    BinaryTree<Integer> leftD1 = new BinaryTreeClass<>(new BinaryTreeClass<>(null, null, 2), null, 3);
+    BinaryTree<Integer> rightD1 = new BinaryTreeClass<>(null, new BinaryTreeClass<>(null, null, 4), 5);
+    BinaryTree<Integer> treeD1 = new BinaryTreeClass<>(leftD1, rightD1, 1);
+    BinaryTree<Integer> leftD2 = new BinaryTreeClass<>(null, null, 6);
+    BinaryTree<Integer> rightD2 = new BinaryTreeClass<>(null, new BinaryTreeClass<>(null, null, 8), 9);
+    BinaryTree<Integer> treeD2 = new BinaryTreeClass<>(leftD2, rightD2, 10);
+    assertFalse(App.isOfTheSameStructure(treeD1, treeD2));
+  }
+
+  @Test
+    void testQ10Function() {
+        assertFalse(App.Q10(1));
+        assertTrue(App.Q10(30));
+        assertTrue(App.Q10(105));
+        assertFalse(App.Q10(6));
+        assertFalse(App.Q10(2310));
+        assertFalse(App.Q10(0));
+        assertFalse(App.Q10(2));
+    }
 }

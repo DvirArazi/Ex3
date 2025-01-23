@@ -99,7 +99,6 @@ public class Circle2D implements GeoShape {
 
   @Override
   public GeoShape copy() {
-    // TODO Auto-generated method stub
     return new Circle2D(this);
   }
 
@@ -120,7 +119,6 @@ public class Circle2D implements GeoShape {
 
   @Override
   public Point2D innerPoint() {
-    // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'innerPoint'");
   }
 

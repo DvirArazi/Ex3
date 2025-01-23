@@ -37,19 +37,16 @@ public class Pizza implements GeoShape {
 
   @Override
   public GeoShape copy() {
-    // TODO Auto-generated method stub
-    return null;
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public Point2D innerPoint() {
-    // TODO Auto-generated method stub
-    return null;
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public void move(Point2D vec) {
-    // TODO Auto-generated method stub
-
+    throw new UnsupportedOperationException();
   }
 }
