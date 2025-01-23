@@ -34,6 +34,7 @@ public class AppTest {
     assertArrayEquals(first, second);
   }
 
+  // 18.2
   @Test
   public void testAllCodes() {
     assertArrayEquals(

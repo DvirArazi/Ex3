@@ -264,20 +264,19 @@ public class App {
   // Unclear how I'm supposed to get the data of each leaf.
   // Is the `getRoot` function supposed to return the value of
   // the current node or of that of the base Node of the tree?
-  // public static <T> ArrayList<T> q10(BinaryTree<T> bt1) {
-  // ArrayList<T> leaves = new ArrayList<>();
-  // if (bt1 == null)
-  // return leaves;
-  // if (bt1.getLeft() == null && bt1.getRight() == null)
-  // {
-  // leaves.add(bt1.ge)
-  // }
-  // if (bt1.getLeft() != null)
-  // q10.
-  // }
+  public static <T> ArrayList<T> q10(BinaryTree<T> bt1) {
+    
+    for (int i = 0; i < bt1.size(); i++) {
+      bt1.get(i);
+    }
+  }
+
+  static <T> void gatherLeaves(BinaryTree<T> tree, ArrayList<T> leaves) {
+    if (tree.getLeft() == null && tree.getRight() == null) leaves.add(null)
+  }
 
   // Question 11
-  public static <T> double q10(BinaryTree<T> bt) {
+  public static <T> double q11(BinaryTree<T> bt) {
     int height = getHeight(bt);
 
     int minHeight = (int) Math.ceil(Math.log(bt.size() + 1) / Math.log(2)) - 1;
@@ -439,5 +438,5 @@ public class App {
   // 18.2 - AppTest.java testAllCodes
 
   // Question 19 - Pizza.java
-  
+
 }

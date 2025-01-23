@@ -1,5 +1,8 @@
 // Question 17.1
-package Utils;
+
+
+import Utils.GeoShape;
+import Utils.ShapeFilter;
 
 public class AreaFilter implements ShapeFilter {
     GeoShape shape;

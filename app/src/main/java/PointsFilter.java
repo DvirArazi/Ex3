@@ -1,5 +1,9 @@
 // Question 17.2
-package Utils;
+
+
+import Utils.GeoShape;
+import Utils.Point2D;
+import Utils.ShapeFilter;
 
 public class PointsFilter implements ShapeFilter {
   Point2D[] points;
