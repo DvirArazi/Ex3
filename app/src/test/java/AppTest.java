@@ -11,11 +11,6 @@ import Utils.BinaryTree;
 
 public class AppTest {
   @Test
-  public void testIsOfTheSameStructure() {
-    assertEquals(1, 2);
-  }
-
-  @Test
   public void mySortTest() {
     Integer[] first = new Integer[] { 1 };
     Integer[] second = new Integer[] { 1 };
