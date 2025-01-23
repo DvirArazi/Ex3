@@ -53,7 +53,7 @@ public class BinaryTreeClass<T> implements BinaryTree<T> {
 
   @Override
   public boolean isEmpty() {
-    throw new UnsupportedOperationException();
+    return left == null && right == null && value == null;
   }
 
   @Override
@@ -68,6 +68,10 @@ public class BinaryTreeClass<T> implements BinaryTree<T> {
 
   @Override
   public int size() {
-    throw new UnsupportedOperationException();
+    if (this.isEmpty())
+      return 0;
+    int leftSize = (left != null) ? left.size() : 0;
+    int rightSize = (right != null) ? right.size() : 0;
+    return 1 + leftSize + rightSize;
   }
 }

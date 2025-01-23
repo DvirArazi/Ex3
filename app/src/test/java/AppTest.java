@@ -206,4 +206,94 @@ public class AppTest {
     result = App.Q12(input);
     assertArrayEquals(new double[] { 1.0 }, result); // Single element array
   }
+
+  @Test
+  void q9Test() {
+    Utils.BinaryTree<Integer> tree = new BinaryTreeClass<>(
+        new BinaryTreeClass<>(
+            new BinaryTreeClass<>(null, null, 4),
+            new BinaryTreeClass<>(null, null, 5),
+            2),
+        new BinaryTreeClass<>(
+            new BinaryTreeClass<>(null, null, 6),
+            null,
+            3),
+        1);
+
+    assertEquals(3, App.q9(tree, 2, 4)); // Leaves at levels 2 and 3: 4, 5, 6
+
+    tree = new BinaryTreeClass<>(
+        new BinaryTreeClass<>(null, null, 2),
+        null,
+        1);
+
+    assertEquals(1, App.q9(tree, 1, 3)); // Single leaf at level 2: 2
+
+    tree = new BinaryTreeClass<>(null, null, 1); // Single node tree
+    assertEquals(0, App.q9(tree, 2, 3)); // No leaves in the given range
+  }
+
+  @Test
+  void sizeTest() {
+    Utils.BinaryTree<Integer> tree = new BinaryTreeClass<>(
+        new BinaryTreeClass<>(new BinaryTreeClass<>(null, null, 4), null, 2),
+        new BinaryTreeClass<>(null, null, 3),
+        1);
+
+    assertEquals(2, (int) Math.ceil(Math.log(tree.size() + 1) / Math.log(2)) - 1);
+    assertEquals(2, App.getHeight(tree));
+
+    assertEquals(4, tree.size());
+  }
+
+  @Test
+  void testCompactnessRatioFunction() {
+    Utils.BinaryTree<Integer> tree = new BinaryTreeClass<>(
+        new BinaryTreeClass<>(new BinaryTreeClass<>(null, null, 4), null, 2),
+        new BinaryTreeClass<>(null, null, 3),
+        1);
+
+    assertEquals(1, App.q11(tree), 0.01);
+
+    tree = new BinaryTreeClass<>(
+        new BinaryTreeClass<>(
+            new BinaryTreeClass<>(null, null, 4),
+            new BinaryTreeClass<>(null, null, 5),
+            2),
+        new BinaryTreeClass<>(null, null, 3),
+        1);
+    assertEquals(1, App.q11(tree), 0.01);
+
+    tree = new BinaryTreeClass<Integer>(
+        new BinaryTreeClass<Integer>(
+            new BinaryTreeClass<Integer>(
+                new BinaryTreeClass<Integer>(
+                    new BinaryTreeClass<Integer>(
+                        new BinaryTreeClass<Integer>(
+                            new BinaryTreeClass<Integer>(null,
+                                null, 7),
+                            null, 6),
+                        null, 5),
+                    null, 4),
+                null, 3),
+            null, 2),
+        null, 1);
+
+    assertEquals(3, App.q11(tree), 0.01);
+
+    tree = new BinaryTreeClass<Integer>(
+        new BinaryTreeClass<Integer>(
+            new BinaryTreeClass<Integer>(
+                new BinaryTreeClass<Integer>(
+                    new BinaryTreeClass<Integer>(
+                        new BinaryTreeClass<Integer>(null,
+                            null, 6),
+                        null, 5),
+                    new BinaryTreeClass<Integer>(null, null, 7), 4),
+                null, 3),
+            null, 2),
+        null, 1);
+
+    assertEquals(2.5, App.q11(tree), 0.01);
+  }
 }

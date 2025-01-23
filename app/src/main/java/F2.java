@@ -2,12 +2,12 @@
 // Question 15
 import Utils.Parabula;
 
-public class ParabulaClass implements Parabula {
+public class F2 implements Parabula {
   private double a;
   private double b;
   private double c;
 
-  public ParabulaClass(double a, double b, double c) {
+  public F2(double a, double b, double c) {
     this.a = a;
     this.b = b;
     this.c = c;
@@ -24,7 +24,7 @@ public class ParabulaClass implements Parabula {
     double pa = params[0];
     double pb = params[1];
     double pc = params[2];
-    return new ParabulaClass(a + pa, b + pb, c + pc);
+    return new F2(a + pa, b + pb, c + pc);
   }
 
   @Override

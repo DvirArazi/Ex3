@@ -210,7 +210,7 @@ public class App {
     int leafCount = 0;
     for (int i = 0; i < max; i++) {
       for (BinaryTree<T> tree : trees) {
-        if (tree != null) {
+        if (!(tree.getLeft() == null && tree.getRight() == null)) {
           if (tree.getLeft() != null)
             treesTemp.add(tree.getLeft());
           if (tree.getRight() != null)
@@ -261,7 +261,7 @@ public class App {
 
   static <T> int getHeight(BinaryTree<T> tree) {
     if (tree == null)
-      return 0;
+      return -1;
 
     return 1 + Math.max(getHeight(tree.getLeft()), getHeight(tree.getRight()));
   }
