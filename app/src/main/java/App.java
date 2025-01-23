@@ -13,38 +13,6 @@ import Utils.ShapeFilter;
 public class App {
 
   public static void main(String[] args) {
-    // int[][] ans = q1(5, 3);
-    // for (int y = 0; y < ans[0].length; y++) {
-    // for (int x = 0; x < ans.length; x++) {
-    // System.out.print(ans[x][y] + "\t");
-    // }
-    // System.out.println("");
-    // }
-
-    // System.out.println(q2("aaabbbcccxxyaaa"));
-
-    // System.out.println(Q5("to be or not to be", "be"));
-    // System.out.println(Q5("aaa", "aa"));
-
-    // System.out.println(Q10(98));
-
-    // for (int i = 0; i < 30; i++) {
-    // int minH = (int) Math.ceil(Math.log(i + 1) / Math.log(2)) - 1;
-    // System.out.println(i + ", " + minH);
-    // }
-
-    // System.out.println(uniqueSub("abracadabra"));
-
-    System.out.println(factorial(3));
-
-    String[] codes = allCodes();
-    for (int i = 0; i < codes.length; i++) {
-      if (i % 6 == 0)
-        System.out.println();
-      System.out.print("\"" + codes[i] + "\", ");
-    }
-
-    // AppBenchmark.mySortBenchmark();
   }
 
   // Question 1
@@ -93,8 +61,8 @@ public class App {
   // Question 4a
   // 4a.1
   public static <T> boolean isSet(MyListInterface<T> l) {
-    for (int i = 0; i < l.size() - 1; i++) {
-      for (int j = i + 1; j < l.size(); j++) {
+    for (int i = 0; i < l.size() ; i++) {
+      for (int j = 0; j < i; j++) {
         if (l.get(i) == l.get(j))
           return false;
       }

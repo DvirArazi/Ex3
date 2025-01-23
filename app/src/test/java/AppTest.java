@@ -108,13 +108,107 @@ public class AppTest {
   }
 
   @Test
-    void testQ10Function() {
-        assertFalse(App.Q10(1));
-        assertTrue(App.Q10(30));
-        assertTrue(App.Q10(105));
-        assertFalse(App.Q10(6));
-        assertFalse(App.Q10(2310));
-        assertFalse(App.Q10(0));
-        assertFalse(App.Q10(2));
-    }
+  void testQ10Function() {
+    assertFalse(App.Q10(1));
+    assertTrue(App.Q10(30));
+    assertTrue(App.Q10(105));
+    assertFalse(App.Q10(6));
+    assertFalse(App.Q10(2310));
+    assertFalse(App.Q10(0));
+    assertFalse(App.Q10(2));
+  }
+
+  @Test
+  void testIsSetFunction() {
+    Utils.MyList<Integer> list1 = new Utils.MyList<>();
+    list1.addAt(1, 0);
+    list1.addAt(2, 1);
+    list1.addAt(3, 2);
+
+    Utils.MyList<Integer> list2 = new Utils.MyList<>();
+    list2.addAt(1, 0);
+    list2.addAt(2, 1);
+    list2.addAt(1, 2);
+
+    assertTrue(App.isSet(list1)); // No duplicates
+    assertFalse(App.isSet(list2)); // Contains duplicates
+
+    Utils.MyList<Integer> emptyList = new Utils.MyList<>();
+    assertTrue(App.isSet(emptyList)); // Empty list is a set
+  }
+
+  @Test
+  void toSetTest() {
+    Utils.MyList<Integer> list = new Utils.MyList<>();
+    list.addAt(1, 0);
+    list.addAt(2, 1);
+    list.addAt(1, 2);
+    list.addAt(3, 3);
+    list.addAt(2, 4);
+
+    Utils.MyListInterface<Integer> set = App.toSet(list);
+
+    assertEquals(3, set.size()); // Should remove duplicates
+    assertTrue(set.contains(1));
+    assertTrue(set.contains(2));
+    assertTrue(set.contains(3));
+  }
+
+  @Test
+  void intersectTest() {
+    Utils.MyList<Integer> list1 = new Utils.MyList<>();
+    list1.addAt(1, 0);
+    list1.addAt(2, 1);
+    list1.addAt(3, 2);
+
+    Utils.MyList<Integer> list2 = new Utils.MyList<>();
+    list2.addAt(2, 0);
+    list2.addAt(3, 1);
+    list2.addAt(4, 2);
+
+    Utils.MyListInterface<Integer> intersection = App.intersect(list1, list2);
+
+    assertEquals(2, intersection.size());
+    assertTrue(intersection.contains(2));
+    assertTrue(intersection.contains(3));
+    assertFalse(intersection.contains(1));
+    assertFalse(intersection.contains(4));
+  }
+
+  @Test
+  void unionTest() {
+    Utils.MyList<Integer> list1 = new Utils.MyList<>();
+    list1.addAt(1, 0);
+    list1.addAt(2, 1);
+
+    Utils.MyList<Integer> list2 = new Utils.MyList<>();
+    list2.addAt(2, 0);
+    list2.addAt(3, 1);
+
+    Utils.MyListInterface<Integer> union = App.union(list1, list2);
+
+    assertEquals(3, union.size());
+    assertTrue(union.contains(1));
+    assertTrue(union.contains(2));
+    assertTrue(union.contains(3));
+  }
+
+  @Test
+  void q12Test() {
+    double[] input = { 1.1, 2.2, 3.3, 2.1, 4.4, 5.5, 1.0 };
+    double[] result = App.Q12(input);
+    assertArrayEquals(new double[] { 1.1, 2.2, 3.3 }, result); // Longest increasing subarray
+
+    input = new double[] { 5.0, 4.0, 3.0, 2.0, 1.0 };
+    result = App.Q12(input);
+    assertArrayEquals(new double[] { 5.0 }, result); // Single element is longest
+
+    input = new double[] { 1.0, 2.0, 3.0, 4.0, 5.0 };
+    result = App.Q12(input);
+    assertArrayEquals(new double[] { 1.0, 2.0, 3.0, 4.0, 5.0 }, result); // Entire array is longest
+
+    input = new double[] { 1.0 };
+    result = App.Q12(input);
+    assertArrayEquals(new double[] { 1.0 }, result); // Single element array
+  }
 }
